@@ -7,8 +7,8 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json",
-    "prettier"
+    "project": "./tsconfig.json"
+    "prettier": true
   },
   "plugins": ["react"],
   "rules": {}
