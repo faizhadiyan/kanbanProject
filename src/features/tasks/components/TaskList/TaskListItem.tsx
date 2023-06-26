@@ -1,8 +1,9 @@
 import React from 'react'
 import type { Task, CSSProperties } from '../../../../types'
 import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
-import { useRecoilState } from 'recoil' // Ditambahkan
-import { tasksState } from '../../TaskAtoms' // Ditambahkan
+// import { useRecoilState } from 'recoil' // Ditambahkan
+// import { tasksState } from '../../TaskAtoms' // Ditambahkan
+import { useTasksAction } from '../../hooks/Tasks' // Ditambahkan
 
 interface TaskListItemProps {
   task: Task
@@ -54,19 +55,22 @@ const getProgressCategory = (progressOrder: number): string => {
 }
 
 const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
-  // Ditambahkan
-  const [tasks, setTasks] = useRecoilState<Task[]>(tasksState)
+  // // Ditambahkan
+  // const [tasks, setTasks] = useRecoilState<Task[]>(tasksState)
 
-  // Definisikan function ini
-  const completeTask = (taskId: number): void => {
-    const updatedTasks: Task[] = tasks.map((task) =>
-      task.id === taskId ? { ...task, progressOrder: TASK_PROGRESS_ID.COMPLETED } : task
-    )
-    setTasks(updatedTasks)
-  }
+  // // Definisikan function ini
+  // const completeTask = (taskId: number): void => {
+  //   const updatedTasks: Task[] = tasks.map((task) =>
+  //     task.id === taskId ? { ...task, progressOrder: TASK_PROGRESS_ID.COMPLETED } : task
+  //   )
+  //   setTasks(updatedTasks)
+  // }
+
+  const { completeTask } = useTasksAction() //Ditambahkan
 
   return (
     <div style={styles.tableBody}>
+      {/* <div style={styles.tableBodyTaskTitle}> */}
       <div style={styles.tableBodyTaskTitle}>
         {/* <span className="material-icons">check_circle</span> */}
         <span
