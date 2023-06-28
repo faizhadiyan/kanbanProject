@@ -12,4 +12,13 @@ export const TASK_PROGRESS_ID = {
   COMPLETED: 4,
 }
 
+// Ditambahkan
+export const TASK_MODAL_TYPE = {
+  ADD: 'add',
+  EDIT: 'edit',
+}
+
 // Jika ingin memperbarui salah satu dari string tersebut, kita cukup memperbarui app.ts.
+
+// Definisikan function addTask dalam hook useTasksAction
+// Jalankan ketika tombol "Submit" ditekan
