@@ -7,9 +7,10 @@ import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app'
 interface TaskColumnProps {
   columnTitle: string
   tasks: Task[]
+  progressID: number
 }
 
-const TaskColumn = ({ columnTitle, tasks }: TaskColumnProps): JSX.Element => {
+const TaskColumn = ({ columnTitle, tasks, progressID }: TaskColumnProps): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
   return (
@@ -35,7 +36,7 @@ const TaskColumn = ({ columnTitle, tasks }: TaskColumnProps): JSX.Element => {
             headingTitle="Add your task"
             type={TASK_MODAL_TYPE.ADD} // Ditambahkan
             setIsModalOpen={setIsModalOpen}
-            defaultProgressOrder={TASK_PROGRESS_ID.NOT_STARTED}
+            defaultProgressOrder={progressID}
           />
         )}
       </div>
