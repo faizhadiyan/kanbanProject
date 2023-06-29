@@ -73,10 +73,30 @@ const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps)
             setProgressOrder(Number(e.target.value))
           }}
         >
-          <option value={TASK_PROGRESS_ID.NOT_STARTED}>{TASK_PROGRESS_STATUS.NOT_STARTED}</option>
-          <option value={TASK_PROGRESS_ID.IN_PROGRESS}>{TASK_PROGRESS_STATUS.IN_PROGRESS}</option>
-          <option value={TASK_PROGRESS_ID.WAITING}>{TASK_PROGRESS_STATUS.WAITING}</option>
-          <option value={TASK_PROGRESS_ID.COMPLETED}>{TASK_PROGRESS_STATUS.COMPLETED}</option>
+          <option
+            value={TASK_PROGRESS_ID.NOT_STARTED}
+            selected={progressOrder === TASK_PROGRESS_ID.NOT_STARTED}
+          >
+            {TASK_PROGRESS_STATUS.NOT_STARTED}
+          </option>
+          <option
+            value={TASK_PROGRESS_ID.IN_PROGRESS}
+            selected={progressOrder === TASK_PROGRESS_ID.IN_PROGRESS}
+          >
+            {TASK_PROGRESS_STATUS.IN_PROGRESS}
+          </option>
+          <option
+            value={TASK_PROGRESS_ID.WAITING}
+            selected={progressOrder === TASK_PROGRESS_ID.IN_PROGRESS}
+          >
+            {TASK_PROGRESS_STATUS.WAITING}
+          </option>
+          <option
+            value={TASK_PROGRESS_ID.COMPLETED}
+            selected={progressOrder === TASK_PROGRESS_ID.COMPLETED}
+          >
+            {TASK_PROGRESS_STATUS.COMPLETED}
+          </option>
         </select>
       </div>
       <button
