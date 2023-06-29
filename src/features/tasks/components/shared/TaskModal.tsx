@@ -31,8 +31,9 @@ const TaskModal = ({
         </span>
       </div>
       <TaskForm
-        type={type} // Ditambahkan
+        type={type}
         defaultProgressOrder={defaultProgressOrder}
+        setIsModalOpen={setIsModalOpen} // Ditambahkan
       />
     </div>
   )

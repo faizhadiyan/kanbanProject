@@ -6,27 +6,27 @@ import {
   TASK_MODAL_TYPE, // Ditambahkan
 } from '../../../../constants/app'
 import type { CSSProperties } from '../../../../types'
+import { useTasksAction } from '../../hooks/Tasks'
+import type { Dispatch, SetStateAction } from 'react'
 
 interface TaskFormProps {
   type: string // Ditambahkan
   defaultProgressOrder: number
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>
 }
 
-interface useTaskActionType {
-  completeTask: (taskId: number) => void
-  moveTaskCard: (taskId: number, directionNumber: 1 | -1) => void
-  // Ditambahkan
-  addTask: (title: string, detail: string, dueDate: string, progressOrder: number) => void
-}
-
-const TaskForm = ({ defaultProgressOrder }: TaskFormProps): JSX.Element => {
+const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps): JSX.Element => {
   const [title, setTitle] = useState<string>('')
   const [detail, setDetail] = useState<string>('')
   const [dueDate, setDueDate] = useState<string>('')
   const [progressOrder, setProgressOrder] = useState<number>(defaultProgressOrder)
+
+  const { addTask } = useTasksAction()
+
   const handleSubmit = (): void => {
     if (type === TASK_MODAL_TYPE.ADD) {
-      // Jalankan function addTask di sini
+      addTask(title, detail, dueDate, progressOrder)
+      setIsModalOpen(false) // Ditambahkan
     }
   }
 
