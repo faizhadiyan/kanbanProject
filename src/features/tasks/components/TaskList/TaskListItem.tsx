@@ -102,7 +102,7 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
         </span>
       </div>
       {/* Ditambahkan */}
-      {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} />}
+      {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} taskX={task.id} />}
     </div>
   )
 }

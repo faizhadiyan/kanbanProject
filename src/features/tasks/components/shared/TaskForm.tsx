@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { TASK_PROGRESS_ID, TASK_PROGRESS_STATUS } from '../../../../constants/app'
 import {
   TASK_PROGRESS_ID,
   TASK_PROGRESS_STATUS,
@@ -26,6 +25,9 @@ const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps)
   const handleSubmit = (): void => {
     if (type === TASK_MODAL_TYPE.ADD) {
       addTask(title, detail, dueDate, progressOrder)
+      setIsModalOpen(false) // Ditambahkan
+    }
+    if (type === TASK_MODAL_TYPE.EDIT) {
       setIsModalOpen(false) // Ditambahkan
     }
   }
