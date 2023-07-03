@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react' // useState ditambahkan
 import type { Task, CSSProperties } from '../../../../types'
 import { TASK_PROGRESS_ID } from '../../../../constants/app'
 // import { useRecoilState } from 'recoil' // Ditambahkan
 // import { tasksState } from '../../TaskAtoms' // Ditambahkan
 import { useTasksAction } from '../../hooks/Tasks' // Ditambahkan
+import TaskMenu from '../shared/TaskMenu' // Ditambahkan
 
 interface TaskCardProps {
   task: Task
@@ -39,6 +40,8 @@ const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
   const { completeTask } = useTasksAction()
   const { moveTaskCard } = useTasksAction()
 
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+
   return (
     <div style={styles.taskCard}>
       <div style={styles.taskIcons}>
@@ -52,7 +55,13 @@ const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
           {/* Diperbarui */}
           check_circle
         </div>
-        <div className="material-icons" style={styles.menuIcon}>
+        <div
+          className="material-icons"
+          style={styles.menuIcon}
+          onClick={(): void => {
+            setIsMenuOpen(true) // Ditambahkan
+          }}
+        >
           more_vert
         </div>
       </div>
@@ -85,6 +94,7 @@ const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
           </button>
         )}
       </div>
+      {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} />}
     </div>
   )
 }

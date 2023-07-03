@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react' // useState ditambahkan
 import type { Task, CSSProperties } from '../../../../types'
 import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
 // import { useRecoilState } from 'recoil' // Ditambahkan
 // import { tasksState } from '../../TaskAtoms' // Ditambahkan
 import { useTasksAction } from '../../hooks/Tasks' // Ditambahkan
+import TaskMenu from '../shared/TaskMenu' // Ditambahkan
 
 interface TaskListItemProps {
   task: Task
@@ -67,6 +68,7 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
   // }
 
   const { completeTask } = useTasksAction() //Ditambahkan
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 
   return (
     <div style={styles.tableBody}>
@@ -89,10 +91,18 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
       {/* <div style={styles.tableBodyprogress}>{task.progressOrder}</div> */}
       <div style={styles.tableBodyprogress}>{getProgressCategory(task.progressOrder)}</div>
       <div>
-        <span className="material-icons" style={styles.menuIcon}>
+        <span
+          className="material-icons"
+          style={styles.menuIcon}
+          onClick={(): void => {
+            setIsMenuOpen(true) // Ditambahkan
+          }}
+        >
           more_horiz
         </span>
       </div>
+      {/* Ditambahkan */}
+      {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} />}
     </div>
   )
 }
