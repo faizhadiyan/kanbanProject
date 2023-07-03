@@ -27,9 +27,10 @@ const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps)
       addTask(title, detail, dueDate, progressOrder)
       setIsModalOpen(false) // Ditambahkan
     }
+    if (type === TASK_MODAL_TYPE.EDIT) {
+      setIsModalOpen(false) // Ditambahkan
+    }
   }
-
-  // const initialValue =
 
   return (
     <form style={styles.form}>
