@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import { TASK_PROGRESS_ID, TASK_PROGRESS_STATUS } from '../../../../constants/app'
 import {
   TASK_PROGRESS_ID,
   TASK_PROGRESS_STATUS,
@@ -29,6 +28,8 @@ const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps)
       setIsModalOpen(false) // Ditambahkan
     }
   }
+
+  // const initialValue =
 
   return (
     <form style={styles.form}>
