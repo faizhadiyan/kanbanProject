@@ -9,10 +9,7 @@ interface TaskModalProps {
   type: string // Ditambahkan
   setIsModalOpen: Dispatch<SetStateAction<boolean>>
   defaultProgressOrder: number
-  // initialTitle: string
-  // initialDetail: string
-  // initialDueDate: string
-  // initialProgressOrder: string
+  taskX: number
 }
 
 const TaskModal = ({
@@ -20,6 +17,7 @@ const TaskModal = ({
   type, // Ditambahkan
   setIsModalOpen,
   defaultProgressOrder,
+  taskX,
 }: TaskModalProps): JSX.Element => {
   return (
     <div style={styles.container}>
@@ -38,7 +36,8 @@ const TaskModal = ({
       <TaskForm
         type={type}
         defaultProgressOrder={defaultProgressOrder}
-        setIsModalOpen={setIsModalOpen} // Ditambahkan
+        setIsModalOpen={setIsModalOpen}
+        taskX={taskX} // Ditambahkan
       />
     </div>
   )

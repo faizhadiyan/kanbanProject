@@ -37,6 +37,7 @@ const TaskColumn = ({ columnTitle, tasks, progressID }: TaskColumnProps): JSX.El
             type={TASK_MODAL_TYPE.ADD} // Ditambahkan
             setIsModalOpen={setIsModalOpen}
             defaultProgressOrder={progressID}
+            taskX={1}
           />
         )}
       </div>

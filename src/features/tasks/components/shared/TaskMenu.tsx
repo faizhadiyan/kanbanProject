@@ -17,15 +17,12 @@ interface TaskMenuProps {
 
 const TaskMenu = ({ setIsMenuOpen, taskX }: TaskMenuProps): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const { readInitialValue } = useTasksAction()
-
   return (
     <div style={styles.menu}>
       <div
         style={styles.menuItem}
         onClick={(): void => {
-          setIsModalOpen(true)
-          readInitialValue(taskX) // Ditambahkan
+          setIsModalOpen(true) // Ditambahkan
         }}
       >
         <span className="material-icons">edit</span>
@@ -49,18 +46,16 @@ const TaskMenu = ({ setIsMenuOpen, taskX }: TaskMenuProps): JSX.Element => {
           type={TASK_MODAL_TYPE.ADD} // Ditambahkan
           setIsModalOpen={setIsModalOpen}
           defaultProgressOrder={TASK_PROGRESS_ID.NOT_STARTED}
-          // initialTitle={initialTitle}
-          // initialDetail={initialDetail}
-          // initialDueDate={initialDueDate}
-          // initialProgressOrder={initialProgressOrder}
+          taskX={taskX}
         />
       )}
       {isModalOpen && (
         <TaskModal
           headingTitle="Edit your task"
-          type={TASK_MODAL_TYPE.EDIT} // Ditambahkan
+          type={TASK_MODAL_TYPE.EDIT}
           setIsModalOpen={setIsModalOpen}
           defaultProgressOrder={TASK_PROGRESS_ID.NOT_STARTED}
+          taskX={taskX}
         />
       )}
     </div>

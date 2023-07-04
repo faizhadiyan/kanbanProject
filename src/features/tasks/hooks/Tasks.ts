@@ -8,7 +8,7 @@ interface useTaskActionType {
   moveTaskCard: (taskId: number, directionNumber: 1 | -1) => void
   // Ditambahkan
   addTask: (title: string, detail: string, dueDate: string, progressOrder: number) => void
-  readInitialValue: (taskIdReal: number) => void
+  readInitialValue: (taskX: number) => void
 }
 
 // Dalam hal ini, kita mendefinisikan hook bernama useTasksAction dan ini akan menghasilkan nilai return berupa function yang akan memanipulasi state dari task-task (yaitu: complete, add, delete, edit ...).
@@ -41,11 +41,24 @@ export const useTasksAction = (): useTaskActionType => {
     setTasks([...tasks, newTask])
   }
 
-  const readInitialValue = (taskIdReal: number): void => {
-    const initialTitle = tasks[taskIdReal].title
-    const initialDetail = tasks[taskIdReal].detail
-    const initialDueDate = tasks[taskIdReal].dueDate
-    const initialProgressOrder = tasks[taskIdReal].progressOrder
+  const readInitialValue = (taskX: number): void => {
+    const initialTitle = tasks[taskX].title
+    const initialDetail = tasks[taskX].detail
+    const initialDueDate = tasks[taskX].dueDate
+    const initialProgressOrder = tasks[taskX].progressOrder
+
+    const updatedTasks: Task[] = tasks.map((task) =>
+      task.id === taskX
+        ? {
+            ...task,
+            title: initialTitle,
+            detail: initialDetail,
+            dueDate: initialDueDate,
+            progressOrder: initialProgressOrder,
+          }
+        : task
+    )
+    setTasks(updatedTasks)
   }
 
   return {
@@ -55,13 +68,3 @@ export const useTasksAction = (): useTaskActionType => {
     readInitialValue,
   }
 }
-
-// export const updateInitialValue = (): useTaskActionType => {
-//   const [tasks, setTasks] = useRecoilState<Task[]>(tasksState)
-
-//   return {
-//     completeTask,
-//     moveTaskCard,
-//     addTask,
-//   }
-// }

@@ -12,15 +12,25 @@ interface TaskFormProps {
   type: string // Ditambahkan
   defaultProgressOrder: number
   setIsModalOpen: Dispatch<SetStateAction<boolean>>
+  taskX: number
 }
 
-const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps): JSX.Element => {
+const TaskForm = ({
+  type,
+  defaultProgressOrder,
+  setIsModalOpen,
+  taskX,
+}: TaskFormProps): JSX.Element => {
   const [title, setTitle] = useState<string>('')
   const [detail, setDetail] = useState<string>('')
   const [dueDate, setDueDate] = useState<string>('')
   const [progressOrder, setProgressOrder] = useState<number>(defaultProgressOrder)
 
-  const { addTask } = useTasksAction()
+  const { addTask, readInitialValue } = useTasksAction()
+
+  if (type === TASK_MODAL_TYPE.EDIT) {
+    console.log(readInitialValue(taskX))
+  }
 
   const handleSubmit = (): void => {
     if (type === TASK_MODAL_TYPE.ADD) {
@@ -28,6 +38,7 @@ const TaskForm = ({ type, defaultProgressOrder, setIsModalOpen }: TaskFormProps)
       setIsModalOpen(false) // Ditambahkan
     }
     if (type === TASK_MODAL_TYPE.EDIT) {
+      addTask(title, detail, dueDate, progressOrder)
       setIsModalOpen(false) // Ditambahkan
     }
   }
