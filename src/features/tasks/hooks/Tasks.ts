@@ -7,8 +7,19 @@ interface useTaskActionType {
   completeTask: (taskId: number) => void
   moveTaskCard: (taskId: number, directionNumber: 1 | -1) => void
   // Ditambahkan
-  addTask: (title: string, detail: string, dueDate: string, progressOrder: number) => void
-  readInitialValue: (taskX: number) => void
+  addTask: (
+    id: number,
+    title: string,
+    detail: string,
+    dueDate: string,
+    progressOrder: number
+  ) => void
+  readInitialValue: (taskX: number) => {
+    initialTitle: string
+    initialDetail: string
+    initialDueDate: string
+    initialProgressOrder: number
+  }
 }
 
 // Dalam hal ini, kita mendefinisikan hook bernama useTasksAction dan ini akan menghasilkan nilai return berupa function yang akan memanipulasi state dari task-task (yaitu: complete, add, delete, edit ...).
@@ -30,35 +41,71 @@ export const useTasksAction = (): useTaskActionType => {
     setTasks(updatedTasks)
   }
 
-  const addTask = (title: string, detail: string, dueDate: string, progressOrder: number): void => {
-    const newTask: Task = {
-      id: tasks.length + 1,
-      title,
-      detail,
-      dueDate,
-      progressOrder,
-    }
-    setTasks([...tasks, newTask])
+  // const addTask = (title: string, detail: string, dueDate: string, progressOrder: number): void => {
+  //   const newTask: Task = {
+  //     id: tasks.length + 1,
+  //     title,
+  //     detail,
+  //     dueDate,
+  //     progressOrder,
+  //   }
+  //   setTasks([...tasks, newTask])
+  // }
+
+  const addTask = (
+    id: number,
+    title: string,
+    detail: string,
+    dueDate: string,
+    progressOrder: number
+  ): void => {
+    setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) =>
+        task.id === id ? { ...task, title, detail, dueDate, progressOrder } : task
+      )
+      return updatedTasks
+    })
   }
 
-  const readInitialValue = (taskX: number): void => {
-    const initialTitle = tasks[taskX].title
-    const initialDetail = tasks[taskX].detail
-    const initialDueDate = tasks[taskX].dueDate
-    const initialProgressOrder = tasks[taskX].progressOrder
+  // const readInitialValue = (taskX: number): void => {
+  //   const initialTitle = tasks[taskX].title
+  //   const initialDetail = tasks[taskX].detail
+  //   const initialDueDate = tasks[taskX].dueDate
+  //   const initialProgressOrder = tasks[taskX].progressOrder
 
-    const updatedTasks: Task[] = tasks.map((task) =>
-      task.id === taskX
-        ? {
-            ...task,
-            title: initialTitle,
-            detail: initialDetail,
-            dueDate: initialDueDate,
-            progressOrder: initialProgressOrder,
-          }
-        : task
-    )
-    setTasks(updatedTasks)
+  //   const updatedTasks: Task[] = tasks.map((task) =>
+  //     task.id === taskX
+  //       ? {
+  //           ...task,
+  //           title: initialTitle,
+  //           detail: initialDetail,
+  //           dueDate: initialDueDate,
+  //           progressOrder: initialProgressOrder,
+  //         }
+  //       : task
+  //   )
+  //   setTasks(updatedTasks)
+  // }
+
+  const readInitialValue = (
+    taskX: number
+  ): {
+    initialTitle: string
+    initialDetail: string
+    initialDueDate: string
+    initialProgressOrder: number
+  } => {
+    const task = tasks.find((task) => task.id === taskX)
+    if (task) {
+      const { title, detail, dueDate, progressOrder } = task
+      return {
+        initialTitle: title,
+        initialDetail: detail,
+        initialDueDate: dueDate,
+        initialProgressOrder: progressOrder,
+      }
+    }
+    return { initialTitle: '', initialDetail: '', initialDueDate: '', initialProgressOrder: 0 }
   }
 
   return {

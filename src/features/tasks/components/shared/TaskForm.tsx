@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useRecoilValue } from 'recoil'
 import {
   TASK_PROGRESS_ID,
   TASK_PROGRESS_STATUS,
@@ -7,6 +8,7 @@ import {
 import type { CSSProperties } from '../../../../types'
 import { useTasksAction } from '../../hooks/Tasks'
 import type { Dispatch, SetStateAction } from 'react'
+import { tasksState } from '../../TaskAtoms'
 
 interface TaskFormProps {
   type: string // Ditambahkan
@@ -28,18 +30,41 @@ const TaskForm = ({
 
   const { addTask, readInitialValue } = useTasksAction()
 
-  if (type === TASK_MODAL_TYPE.EDIT) {
-    console.log(readInitialValue(taskX))
-  }
+  // if (type === TASK_MODAL_TYPE.EDIT) {
+  //   console.log(readInitialValue(taskX))
+  // }
+  useEffect(() => {
+    if (type === TASK_MODAL_TYPE.EDIT) {
+      const { initialTitle, initialDetail, initialDueDate, initialProgressOrder } =
+        readInitialValue(taskX)
+      setTitle(initialTitle)
+      setDetail(initialDetail)
+      setDueDate(initialDueDate)
+      setProgressOrder(initialProgressOrder)
+    }
+  }, [type, taskX, readInitialValue])
+
+  // const handleSubmit = (): void => {
+  //   if (type === TASK_MODAL_TYPE.ADD) {
+  //     addTask(title, detail, dueDate, progressOrder)
+  //     setIsModalOpen(false) // Ditambahkan
+  //   }
+  //   if (type === TASK_MODAL_TYPE.EDIT) {
+  //     addTask(title, detail, dueDate, progressOrder)
+  //     setIsModalOpen(false) // Ditambahkan
+  //   }
+  // }
+
+  const tasks = useRecoilValue(tasksState)
+  const tasksLength = tasks.length
 
   const handleSubmit = (): void => {
     if (type === TASK_MODAL_TYPE.ADD) {
-      addTask(title, detail, dueDate, progressOrder)
-      setIsModalOpen(false) // Ditambahkan
-    }
-    if (type === TASK_MODAL_TYPE.EDIT) {
-      addTask(title, detail, dueDate, progressOrder)
-      setIsModalOpen(false) // Ditambahkan
+      addTask(tasksLength + 1, title, detail, dueDate, progressOrder)
+      setIsModalOpen(false)
+    } else if (type === TASK_MODAL_TYPE.EDIT) {
+      addTask(taskX, title, detail, dueDate, progressOrder)
+      setIsModalOpen(false)
     }
   }
 
