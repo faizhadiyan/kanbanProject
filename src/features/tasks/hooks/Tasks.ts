@@ -7,7 +7,8 @@ interface useTaskActionType {
   completeTask: (taskId: number) => void
   moveTaskCard: (taskId: number, directionNumber: 1 | -1) => void
   // Ditambahkan
-  addTask: (
+  addTask: (title: string, detail: string, dueDate: string, progressOrder: number) => void
+  editTask: (
     id: number,
     title: string,
     detail: string,
@@ -52,7 +53,35 @@ export const useTasksAction = (): useTaskActionType => {
   //   setTasks([...tasks, newTask])
   // }
 
-  const addTask = (
+  // const addTask = (
+  //   id: number,
+  //   title: string,
+  //   detail: string,
+  //   dueDate: string,
+  //   progressOrder: number
+  // ): void => {
+  //   setTasks((prevTasks) => {
+  //     const updatedTasks = prevTasks.map((task) =>
+  //       task.id === id ? { ...task, title, detail, dueDate, progressOrder } : task
+  //     )
+  //     return updatedTasks
+  //   })
+  // }
+
+  const addTask = (title: string, detail: string, dueDate: string, progressOrder: number): void => {
+    setTasks((prevTasks) => {
+      const newTask: Task = {
+        id: prevTasks.length + 1,
+        title,
+        detail,
+        dueDate,
+        progressOrder,
+      }
+      return [...prevTasks, newTask]
+    })
+  }
+
+  const editTask = (
     id: number,
     title: string,
     detail: string,
@@ -60,10 +89,9 @@ export const useTasksAction = (): useTaskActionType => {
     progressOrder: number
   ): void => {
     setTasks((prevTasks) => {
-      const updatedTasks = prevTasks.map((task) =>
+      return prevTasks.map((task) =>
         task.id === id ? { ...task, title, detail, dueDate, progressOrder } : task
       )
-      return updatedTasks
     })
   }
 
@@ -112,6 +140,7 @@ export const useTasksAction = (): useTaskActionType => {
     completeTask,
     moveTaskCard,
     addTask,
+    editTask,
     readInitialValue,
   }
 }

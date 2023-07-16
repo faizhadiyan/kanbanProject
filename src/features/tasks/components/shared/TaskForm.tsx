@@ -28,21 +28,23 @@ const TaskForm = ({
   const [dueDate, setDueDate] = useState<string>('')
   const [progressOrder, setProgressOrder] = useState<number>(defaultProgressOrder)
 
-  const { addTask, readInitialValue } = useTasksAction()
+  const { addTask, editTask, readInitialValue } = useTasksAction()
 
   // if (type === TASK_MODAL_TYPE.EDIT) {
   //   console.log(readInitialValue(taskX))
   // }
+
+  const { initialTitle, initialDetail, initialDueDate, initialProgressOrder } =
+    readInitialValue(taskX)
+
   useEffect(() => {
     if (type === TASK_MODAL_TYPE.EDIT) {
-      const { initialTitle, initialDetail, initialDueDate, initialProgressOrder } =
-        readInitialValue(taskX)
       setTitle(initialTitle)
       setDetail(initialDetail)
       setDueDate(initialDueDate)
       setProgressOrder(initialProgressOrder)
     }
-  }, [type, taskX, readInitialValue])
+  }, [type, taskX, initialTitle, initialDetail, initialDueDate, initialProgressOrder])
 
   // const handleSubmit = (): void => {
   //   if (type === TASK_MODAL_TYPE.ADD) {
@@ -55,15 +57,12 @@ const TaskForm = ({
   //   }
   // }
 
-  const tasks = useRecoilValue(tasksState)
-  const tasksLength = tasks.length
-
   const handleSubmit = (): void => {
     if (type === TASK_MODAL_TYPE.ADD) {
-      addTask(tasksLength + 1, title, detail, dueDate, progressOrder)
+      addTask(title, detail, dueDate, progressOrder)
       setIsModalOpen(false)
     } else if (type === TASK_MODAL_TYPE.EDIT) {
-      addTask(taskX, title, detail, dueDate, progressOrder)
+      editTask(taskX, title, detail, dueDate, progressOrder)
       setIsModalOpen(false)
     }
   }
@@ -76,7 +75,12 @@ const TaskForm = ({
           type="text"
           value={title}
           onChange={(e): void => {
-            setTitle(e.target.value)
+            if (
+              type === TASK_MODAL_TYPE.ADD ||
+              (type === TASK_MODAL_TYPE.EDIT && e.target.value !== initialTitle)
+            ) {
+              setTitle(e.target.value)
+            }
           }}
           style={styles.formInput}
         />
@@ -86,7 +90,12 @@ const TaskForm = ({
         <textarea
           value={detail}
           onChange={(e): void => {
-            setDetail(e.target.value)
+            if (
+              type === TASK_MODAL_TYPE.ADD ||
+              (type === TASK_MODAL_TYPE.EDIT && e.target.value !== initialDetail)
+            ) {
+              setDetail(e.target.value)
+            }
           }}
           style={styles.formTextArea}
         />
@@ -97,7 +106,12 @@ const TaskForm = ({
           type="date"
           value={dueDate}
           onChange={(e): void => {
-            setDueDate(e.target.value)
+            if (
+              type === TASK_MODAL_TYPE.ADD ||
+              (type === TASK_MODAL_TYPE.EDIT && e.target.value !== initialDueDate)
+            ) {
+              setDueDate(e.target.value)
+            }
           }}
           style={styles.formInput}
         />
@@ -108,7 +122,12 @@ const TaskForm = ({
           style={styles.formInput}
           defaultValue={progressOrder}
           onChange={(e): void => {
-            setProgressOrder(Number(e.target.value))
+            if (
+              type === TASK_MODAL_TYPE.ADD ||
+              (type === TASK_MODAL_TYPE.EDIT && Number(e.target.value) !== initialProgressOrder)
+            ) {
+              setProgressOrder(Number(e.target.value))
+            }
           }}
         >
           <option
