@@ -7,7 +7,6 @@ import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal' // Ditambahkan
 import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app' // Ditambahkan
 import TaskListMenu from './TaskListMenu'
-import { filteredTasksState } from '../../TaskSelector'
 
 const TaskList = (): JSX.Element => {
   const tasks: Task[] = useRecoilValue(tasksState)
@@ -62,13 +61,7 @@ const TaskList = (): JSX.Element => {
             taskX={0}
           />
         )}
-        {isFilterMenuOpen && (
-          <TaskListMenu
-            setIsFilterMenuOpen={setIsFilterMenuOpen}
-            taskX={0}
-            // setShowCompleted={setShowCompleted}
-          />
-        )}
+        {isFilterMenuOpen && <TaskListMenu setIsFilterMenuOpen={setIsFilterMenuOpen} />}
       </div>
     </div>
   )

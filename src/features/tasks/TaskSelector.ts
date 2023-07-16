@@ -50,20 +50,6 @@ export const completedTasksSelector = selector<Task[]>({
   },
 })
 
-export const filteredTasksState = selector<Task[]>({
-  key: 'filteredTasks',
-  get: ({ get }) => {
-    const tasks = get(tasksState)
-    const showCompleted = get(showCompletedState)
-
-    if (showCompleted) {
-      return tasks
-    } else {
-      return tasks.filter((task) => task.progressOrder !== TASK_PROGRESS_ID.COMPLETED)
-    }
-  },
-})
-
 // notStartedTasksSelector,
 //   inProgressTasksSelector,
 //   waitingTasksSelector,
