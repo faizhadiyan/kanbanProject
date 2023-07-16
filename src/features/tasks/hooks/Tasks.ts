@@ -15,6 +15,7 @@ interface useTaskActionType {
     dueDate: string,
     progressOrder: number
   ) => void
+  deleteTask: (id: number) => void
   readInitialValue: (taskX: number) => {
     initialTitle: string
     initialDetail: string
@@ -95,6 +96,12 @@ export const useTasksAction = (): useTaskActionType => {
     })
   }
 
+  const deleteTask = (id: number): void => {
+    // Make sure to update the implementation according to your actual data structure
+    const updatedTasks = tasks.filter((task) => task.id !== id)
+    setTasks(updatedTasks)
+  }
+
   // const readInitialValue = (taskX: number): void => {
   //   const initialTitle = tasks[taskX].title
   //   const initialDetail = tasks[taskX].detail
@@ -141,6 +148,7 @@ export const useTasksAction = (): useTaskActionType => {
     moveTaskCard,
     addTask,
     editTask,
+    deleteTask,
     readInitialValue,
   }
 }

@@ -17,6 +17,12 @@ interface TaskMenuProps {
 
 const TaskMenu = ({ setIsMenuOpen, taskX }: TaskMenuProps): JSX.Element => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  const { deleteTask } = useTasksAction()
+  const deleteTasks = (): void => {
+    deleteTask(taskX)
+  }
+
   return (
     <div style={styles.menu}>
       <div
@@ -28,7 +34,12 @@ const TaskMenu = ({ setIsMenuOpen, taskX }: TaskMenuProps): JSX.Element => {
         <span className="material-icons">edit</span>
         Edit
       </div>
-      <div style={styles.menuItem}>
+      <div
+        style={styles.menuItem}
+        onClick={(): void => {
+          deleteTasks()
+        }}
+      >
         <span className="material-icons">delete</span>Delete
       </div>
       <span
