@@ -6,6 +6,7 @@ import TaskListItem from './TaskListItem'
 import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal' // Ditambahkan
 import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app' // Ditambahkan
+import TaskListMenu from './TaskListMenu'
 
 const TaskList = (): JSX.Element => {
   const tasks: Task[] = useRecoilValue(tasksState)
@@ -52,6 +53,7 @@ const TaskList = (): JSX.Element => {
           />
         )}
       </div>
+      <TaskListMenu />
     </div>
   )
 }
