@@ -88,7 +88,6 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
       </div>
       <div style={styles.tableBodyDetail}>{task.detail}</div>
       <div style={styles.tableBodyDueDate}>{task.dueDate}</div>
-      {/* <div style={styles.tableBodyprogress}>{task.progressOrder}</div> */}
       <div style={styles.tableBodyprogress}>{getProgressCategory(task.progressOrder)}</div>
       <div>
         <span

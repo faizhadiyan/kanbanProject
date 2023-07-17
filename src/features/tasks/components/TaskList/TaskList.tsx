@@ -15,8 +15,6 @@ const TaskList = (): JSX.Element => {
 
   const [isFilterMenuOpen, setIsFilterMenuOpen] = useState<boolean>(false)
 
-  const [showCompleted, setShowCompleted] = useState<boolean>(false)
-
   return (
     <div style={styles.container}>
       <h1 style={styles.heading}>Your Tasks</h1>
@@ -48,9 +46,12 @@ const TaskList = (): JSX.Element => {
           <div style={styles.tableHeaderDueDate}>Due Date</div>
           <div style={styles.tableHeaderProgress}>Progress</div>
         </div>
-        {tasks.map((task: Task) => {
+        {/* {tasks.map((task: Task) => {
           return <TaskListItem task={task} key={task.id} />
-        })}
+        })} */}
+        {tasks.map((task: Task) => (
+          <TaskListItem task={task} key={task.id} />
+        ))}
         {/* Ditambahkan */}
         {isModalOpen && (
           <TaskModal
