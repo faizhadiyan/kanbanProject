@@ -1,15 +1,16 @@
 // import React from 'react'
 import React, { useState } from 'react' // useState ditambahkan
 import { useRecoilValue } from 'recoil'
-import { tasksState } from '../../TaskAtoms'
+import { tasksState, tasksFilterState } from '../../TaskAtoms'
 import TaskListItem from './TaskListItem'
 import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal' // Ditambahkan
 import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app' // Ditambahkan
 import TaskListMenu from './TaskListMenu'
+import { filteredTasks } from '../../TaskSelector'
 
 const TaskList = (): JSX.Element => {
-  const tasks: Task[] = useRecoilValue(tasksState)
+  const tasks: Task[] = useRecoilValue(filteredTasks)
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
 
@@ -46,9 +47,6 @@ const TaskList = (): JSX.Element => {
           <div style={styles.tableHeaderDueDate}>Due Date</div>
           <div style={styles.tableHeaderProgress}>Progress</div>
         </div>
-        {/* {tasks.map((task: Task) => {
-          return <TaskListItem task={task} key={task.id} />
-        })} */}
         {tasks.map((task: Task) => (
           <TaskListItem task={task} key={task.id} />
         ))}

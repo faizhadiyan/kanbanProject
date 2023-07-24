@@ -1,5 +1,5 @@
 import { selector } from 'recoil'
-import { tasksState } from './TaskAtoms'
+import { tasksState, tasksFilterState } from './TaskAtoms'
 import type { Task } from '../../types'
 import { SelectorKeys } from '../../constants/recoilKeys'
 
@@ -50,10 +50,16 @@ export const completedTasksSelector = selector<Task[]>({
   },
 })
 
-// notStartedTasksSelector,
-//   inProgressTasksSelector,
-//   waitingTasksSelector,
-// 1 = "Not Started"
-// 2 = "In Progress"
-// 3 = "In Review / Waiting"
-// 4 = "Completed"
+export const filteredTasks = selector({
+  key: 'filteredTasks',
+  get: ({ get }) => {
+    const filter = get(tasksFilterState)
+    const tasks = get(tasksState)
+
+    // Menghasilkan state yang diperbarui berdasarkan nilai filter
+    if (filter === 'all') return tasks
+    if (filter === 'uncompleted') return tasks.filter((task) => task.progressOrder !== 4)
+    if (filter === 'completed') return tasks.filter((task) => task.progressOrder === 4)
+    return tasks.filter((task) => task.progressOrder === 1 && 2 && 3 && 4)
+  },
+})

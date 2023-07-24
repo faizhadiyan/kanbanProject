@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useRecoilValue } from 'recoil'
-import { tasksState } from '../../TaskAtoms'
+import { useSetRecoilState } from 'recoil'
+import { tasksState, tasksFilterState } from '../../TaskAtoms'
 import TaskListItem from './TaskListItem'
 import {
   notStartedTasksSelector,
@@ -19,7 +20,7 @@ interface TaskListMenuProps {
 }
 
 const TaskListMenu = ({ setIsFilterMenuOpen }: TaskListMenuProps): JSX.Element => {
-  const [filterType, setFilterType] = useState('all')
+  const setTaskFilter = useSetRecoilState(tasksFilterState)
 
   const notStartedTasks: Task[] = useRecoilValue(notStartedTasksSelector)
   const inProgressTasks: Task[] = useRecoilValue(inProgressTasksSelector)
@@ -27,25 +28,33 @@ const TaskListMenu = ({ setIsFilterMenuOpen }: TaskListMenuProps): JSX.Element =
   const completedTasks: Task[] = useRecoilValue(completedTasksSelector)
 
   // const tasks = useRecoilValue(tasksState)
-  let tasksToDisplay: Task[] = []
+  // let tasksToDisplay: Task[] = []
 
-  switch (filterType) {
-    case 'completed':
-      tasksToDisplay = completedTasks
-      break
-    case 'uncompleted':
-      tasksToDisplay = [...notStartedTasks, ...inProgressTasks, ...waitingTasks, ...completedTasks]
-      break
-    default:
-      tasksToDisplay = [...notStartedTasks, ...inProgressTasks, ...waitingTasks, ...completedTasks]
-      break
-  }
+  // switch (filterType) {
+  //   case 'completed':
+  //     tasksToDisplay = completedTasks
+  //     break
+  //   case 'uncompleted':
+  //     tasksToDisplay = [...notStartedTasks, ...inProgressTasks, ...waitingTasks, ...completedTasks]
+  //     break
+  //   default:
+  //     tasksToDisplay = [...notStartedTasks, ...inProgressTasks, ...waitingTasks, ...completedTasks]
+  //     break
+  // }
 
   return (
     <div style={styles.menu}>
-      <div style={styles.menuItem} onClick={() => setFilterType('completed')}>
+      <div style={styles.menuItem} onClick={() => setTaskFilter('completed')}>
         <span className="material-icons">check</span>
         Completed Tasks
+      </div>
+      <div style={styles.menuItem} onClick={() => setTaskFilter('uncompleted')}>
+        <span className="material-icons">check</span>
+        Uncompleted Tasks
+      </div>
+      <div style={styles.menuItem} onClick={() => setTaskFilter('all')}>
+        <span className="material-icons">check</span>
+        All Tasks
       </div>
     </div>
   )

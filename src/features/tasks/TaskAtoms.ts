@@ -3,7 +3,6 @@ import type { Task } from '../../types'
 import { AtomKeys } from '../../constants/recoilKeys'
 
 export const tasksState = atom<Task[]>({
-  // key: 'tasks', // Raw String
   key: AtomKeys.TASKS,
   default: [
     {
@@ -49,6 +48,11 @@ export const tasksState = atom<Task[]>({
       progressOrder: 4,
     },
   ],
+})
+
+export const tasksFilterState = atom({
+  key: 'tasksFilterState',
+  default: 'all',
 })
 
 // 1 = "Not Started"

@@ -72,14 +72,12 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
 
   return (
     <div style={styles.tableBody}>
-      {/* <div style={styles.tableBodyTaskTitle}> */}
       <div style={styles.tableBodyTaskTitle}>
-        {/* <span className="material-icons">check_circle</span> */}
         <span
           className="material-icons"
           style={getIconStyle(task.progressOrder)}
           onClick={(): void => {
-            completeTask(task.id) // Ditambahkan
+            completeTask(task.id)
           }}
         >
           check_circle
@@ -100,7 +98,6 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
           more_horiz
         </span>
       </div>
-      {/* Ditambahkan */}
       {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} taskX={task.id} />}
     </div>
   )
