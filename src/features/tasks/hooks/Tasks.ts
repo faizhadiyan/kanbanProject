@@ -43,32 +43,6 @@ export const useTasksAction = (): useTaskActionType => {
     setTasks(updatedTasks)
   }
 
-  // const addTask = (title: string, detail: string, dueDate: string, progressOrder: number): void => {
-  //   const newTask: Task = {
-  //     id: tasks.length + 1,
-  //     title,
-  //     detail,
-  //     dueDate,
-  //     progressOrder,
-  //   }
-  //   setTasks([...tasks, newTask])
-  // }
-
-  // const addTask = (
-  //   id: number,
-  //   title: string,
-  //   detail: string,
-  //   dueDate: string,
-  //   progressOrder: number
-  // ): void => {
-  //   setTasks((prevTasks) => {
-  //     const updatedTasks = prevTasks.map((task) =>
-  //       task.id === id ? { ...task, title, detail, dueDate, progressOrder } : task
-  //     )
-  //     return updatedTasks
-  //   })
-  // }
-
   const addTask = (title: string, detail: string, dueDate: string, progressOrder: number): void => {
     setTasks((prevTasks) => {
       const newTask: Task = {

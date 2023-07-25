@@ -1,16 +1,20 @@
 // import React from 'react'
 import React, { useState } from 'react' // useState ditambahkan
 import { useRecoilValue } from 'recoil'
-import { tasksState } from '../../TaskAtoms'
+import { tasksState, tasksFilterState } from '../../TaskAtoms'
 import TaskListItem from './TaskListItem'
 import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal' // Ditambahkan
 import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app' // Ditambahkan
+import TaskListMenu from './TaskListMenu'
+import { filteredTasks } from '../../TaskSelector'
 
 const TaskList = (): JSX.Element => {
-  const tasks: Task[] = useRecoilValue(tasksState)
+  const tasks: Task[] = useRecoilValue(filteredTasks)
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+
+  const [isFilterMenuOpen, setIsFilterMenuOpen] = useState<boolean>(false)
 
   return (
     <div style={styles.container}>
@@ -22,12 +26,17 @@ const TaskList = (): JSX.Element => {
         <button
           style={styles.button}
           onClick={(): void => {
-            setIsModalOpen(true) // Ditambahkan
+            setIsModalOpen(true)
           }}
         >
           <span className="material-icons">add</span>Add task
         </button>
-        <button style={styles.button}>
+        <button
+          style={styles.button}
+          onClick={(): void => {
+            setIsFilterMenuOpen(true)
+          }}
+        >
           <span className="material-icons">sort</span>Filter tasks
         </button>
       </div>
@@ -38,9 +47,9 @@ const TaskList = (): JSX.Element => {
           <div style={styles.tableHeaderDueDate}>Due Date</div>
           <div style={styles.tableHeaderProgress}>Progress</div>
         </div>
-        {tasks.map((task: Task) => {
-          return <TaskListItem task={task} key={task.id} />
-        })}
+        {tasks.map((task: Task) => (
+          <TaskListItem task={task} key={task.id} />
+        ))}
         {/* Ditambahkan */}
         {isModalOpen && (
           <TaskModal
@@ -51,6 +60,7 @@ const TaskList = (): JSX.Element => {
             taskX={0}
           />
         )}
+        {isFilterMenuOpen && <TaskListMenu setIsFilterMenuOpen={setIsFilterMenuOpen} />}
       </div>
     </div>
   )
