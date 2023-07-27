@@ -1,7 +1,7 @@
 // import React from 'react'
-import React, { useState } from 'react' // useState ditambahkan
+import { useState } from 'react' // useState ditambahkan
 import { useRecoilValue } from 'recoil'
-import { tasksState, tasksFilterState } from '../../TaskAtoms'
+// import { tasksState, tasksFilterState } from '../../TaskAtoms'
 import TaskListItem from './TaskListItem'
 import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal' // Ditambahkan
@@ -60,7 +60,7 @@ const TaskList = (): JSX.Element => {
             taskX={0}
           />
         )}
-        {isFilterMenuOpen && <TaskListMenu setIsFilterMenuOpen={setIsFilterMenuOpen} />}
+        {isFilterMenuOpen && <TaskListMenu />}
       </div>
     </div>
   )

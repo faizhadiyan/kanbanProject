@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Dispatch, SetStateAction } from 'react'
-import type { CSSProperties, Task } from '../../../../types'
+import type { CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal' // Ditambahkan
 import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app'
 import { useTasksAction } from '../../hooks/Tasks'

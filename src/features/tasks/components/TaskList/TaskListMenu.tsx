@@ -9,17 +9,17 @@ import { tasksFilterState } from '../../TaskAtoms'
 //   waitingTasksSelector,
 //   completedTasksSelector,
 // } from '../../TaskSelector'
-import type { Task, CSSProperties } from '../../../../types'
+import type { CSSProperties } from '../../../../types'
 // import TaskModal from '../shared/TaskModal'
 // import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
 import type { Dispatch, SetStateAction } from 'react'
 // import { useTasksAction } from '../../hooks/Tasks'
 
-interface TaskListMenuProps {
-  setIsFilterMenuOpen: Dispatch<SetStateAction<boolean>>
-}
+// interface TaskListMenuProps {
+//   setIsFilterMenuOpen: Dispatch<SetStateAction<boolean>>
+// }
 
-const TaskListMenu = ({ setIsFilterMenuOpen }: TaskListMenuProps): JSX.Element => {
+const TaskListMenu = (): JSX.Element => {
   const setTaskFilter = useSetRecoilState(tasksFilterState)
 
   // const notStartedTasks: Task[] = useRecoilValue(notStartedTasksSelector)

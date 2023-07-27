@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 // import { useRecoilValue } from 'recoil'
 import {
   TASK_PROGRESS_ID,
