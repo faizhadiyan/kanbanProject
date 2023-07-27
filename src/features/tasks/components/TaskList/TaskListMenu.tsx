@@ -12,7 +12,7 @@ import { tasksFilterState } from '../../TaskAtoms'
 import type { CSSProperties } from '../../../../types'
 // import TaskModal from '../shared/TaskModal'
 // import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
-import type { Dispatch, SetStateAction } from 'react'
+// import type { Dispatch, SetStateAction } from 'react'
 // import { useTasksAction } from '../../hooks/Tasks'
 
 // interface TaskListMenuProps {
