@@ -23,10 +23,6 @@ const TaskProgress = (): JSX.Element => {
     <div style={styles.container}>
       <h1 style={styles.heading}>Task Progress</h1>
       <div style={styles.taskCategories}>
-        {/* <TaskColumn columnTitle="Not Started" tasks={notStartedTasks} />
-        <TaskColumn columnTitle="In Progress" tasks={inProgressTasks} />
-        <TaskColumn columnTitle="In Review / Waiting" tasks={waitingTasks} />
-        <TaskColumn columnTitle="Completed" tasks={completedTasks} /> */}
         <TaskColumn
           columnTitle={TASK_PROGRESS_STATUS.NOT_STARTED}
           tasks={notStartedTasks}
