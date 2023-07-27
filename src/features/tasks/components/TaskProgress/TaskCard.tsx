@@ -37,7 +37,7 @@ const getArrowPositionStyle = (progressOrder: number): React.CSSProperties => {
 const TaskCard = ({ task }: TaskCardProps): JSX.Element => {
   // const [tasks, setTasks] = useRecoilState<Task[]>(tasksState)
 
-  const { completeTask, moveTaskCard, readInitialValue } = useTasksAction()
+  const { completeTask, moveTaskCard } = useTasksAction()
 
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
 

@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+// import React, { useState } from 'react'
+// import { useRecoilValue } from 'recoil'
 import { useSetRecoilState } from 'recoil'
-import { tasksState, tasksFilterState } from '../../TaskAtoms'
-import TaskListItem from './TaskListItem'
-import {
-  notStartedTasksSelector,
-  inProgressTasksSelector,
-  waitingTasksSelector,
-  completedTasksSelector,
-} from '../../TaskSelector'
+import { tasksFilterState } from '../../TaskAtoms'
+// import TaskListItem from './TaskListItem'
+// import {
+//   notStartedTasksSelector,
+//   inProgressTasksSelector,
+//   waitingTasksSelector,
+//   completedTasksSelector,
+// } from '../../TaskSelector'
 import type { Task, CSSProperties } from '../../../../types'
-import TaskModal from '../shared/TaskModal'
-import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
+// import TaskModal from '../shared/TaskModal'
+// import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
 import type { Dispatch, SetStateAction } from 'react'
-import { useTasksAction } from '../../hooks/Tasks'
+// import { useTasksAction } from '../../hooks/Tasks'
 
 interface TaskListMenuProps {
   setIsFilterMenuOpen: Dispatch<SetStateAction<boolean>>
@@ -22,10 +22,10 @@ interface TaskListMenuProps {
 const TaskListMenu = ({ setIsFilterMenuOpen }: TaskListMenuProps): JSX.Element => {
   const setTaskFilter = useSetRecoilState(tasksFilterState)
 
-  const notStartedTasks: Task[] = useRecoilValue(notStartedTasksSelector)
-  const inProgressTasks: Task[] = useRecoilValue(inProgressTasksSelector)
-  const waitingTasks: Task[] = useRecoilValue(waitingTasksSelector)
-  const completedTasks: Task[] = useRecoilValue(completedTasksSelector)
+  // const notStartedTasks: Task[] = useRecoilValue(notStartedTasksSelector)
+  // const inProgressTasks: Task[] = useRecoilValue(inProgressTasksSelector)
+  // const waitingTasks: Task[] = useRecoilValue(waitingTasksSelector)
+  // const completedTasks: Task[] = useRecoilValue(completedTasksSelector)
 
   // const tasks = useRecoilValue(tasksState)
   // let tasksToDisplay: Task[] = []

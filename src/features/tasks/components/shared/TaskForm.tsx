@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useRecoilValue } from 'recoil'
+// import { useRecoilValue } from 'recoil'
 import {
   TASK_PROGRESS_ID,
   TASK_PROGRESS_STATUS,
@@ -8,7 +8,7 @@ import {
 import type { CSSProperties } from '../../../../types'
 import { useTasksAction } from '../../hooks/Tasks'
 import type { Dispatch, SetStateAction } from 'react'
-import { tasksState } from '../../TaskAtoms'
+// import { tasksState } from '../../TaskAtoms'
 
 interface TaskFormProps {
   type: string // Ditambahkan

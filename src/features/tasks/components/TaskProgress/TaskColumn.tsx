@@ -1,8 +1,8 @@
-import React, { useState } from 'react' // useState ditambahkan
+import { useState } from 'react' // useState ditambahkan
 import TaskCard from './TaskCard'
 import type { Task, CSSProperties } from '../../../../types'
 import TaskModal from '../shared/TaskModal'
-import { TASK_PROGRESS_ID, TASK_MODAL_TYPE } from '../../../../constants/app'
+import { TASK_MODAL_TYPE } from '../../../../constants/app'
 
 interface TaskColumnProps {
   columnTitle: string
