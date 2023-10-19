@@ -43,7 +43,7 @@ const TaskListMenu = (): JSX.Element => {
   // }
 
   return (
-    <div style={styles.menu}>
+    <div style={styles.menu} data-testid="filter-menu">
       <div style={styles.menuItem} onClick={() => setTaskFilter('completed')}>
         <span className="material-icons">check</span>
         Completed Tasks

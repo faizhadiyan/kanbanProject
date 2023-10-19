@@ -34,8 +34,9 @@ const TaskList = (): JSX.Element => {
         </button>
         <button
           style={styles.button}
+          data-testid="filter-button"
           onClick={(): void => {
-            setIsFilterMenuOpen(true)
+            setIsFilterMenuOpen((prevState) => !prevState)
           }}
         >
           <span className="material-icons">sort</span>Filter tasks
@@ -55,7 +56,7 @@ const TaskList = (): JSX.Element => {
         {isModalOpen && (
           <TaskModal
             headingTitle="Add your task"
-            type={TASK_MODAL_TYPE.ADD} // Ditambahkan
+            type={TASK_MODAL_TYPE.ADD}
             setIsModalOpen={setIsModalOpen}
             defaultProgressOrder={TASK_PROGRESS_ID.NOT_STARTED}
             taskX={0}
