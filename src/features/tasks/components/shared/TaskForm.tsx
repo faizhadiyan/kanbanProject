@@ -69,7 +69,7 @@ const TaskForm = ({
 
   return (
     <form style={styles.form}>
-      <div style={styles.formItem}>
+      <div style={styles.formItem} data-testid="title-input">
         <label>Title：</label>
         <input
           type="text"
@@ -85,7 +85,7 @@ const TaskForm = ({
           style={styles.formInput}
         />
       </div>
-      <div style={styles.formItem}>
+      <div style={styles.formItem} data-testid="detail-input">
         <label>Detail：</label>
         <textarea
           value={detail}
@@ -100,7 +100,7 @@ const TaskForm = ({
           style={styles.formTextArea}
         />
       </div>
-      <div style={styles.formItem}>
+      <div style={styles.formItem} data-testid="due-date-input">
         <label>Due Date：</label>
         <input
           type="date"
@@ -116,7 +116,7 @@ const TaskForm = ({
           style={styles.formInput}
         />
       </div>
-      <div style={styles.formItem}>
+      <div style={styles.formItem} data-testid="progress-select">
         <label>Progress：</label>
         <select
           style={styles.formInput}
@@ -162,6 +162,7 @@ const TaskForm = ({
         onClick={(): void => {
           handleSubmit() // Ditambahkan
         }}
+        data-testid="task-modal-submit-button"
       >
         Submit
       </button>

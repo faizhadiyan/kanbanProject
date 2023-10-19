@@ -24,12 +24,13 @@ const TaskMenu = ({ setIsMenuOpen, taskX }: TaskMenuProps): JSX.Element => {
   }
 
   return (
-    <div style={styles.menu}>
+    <div style={styles.menu} data-testid="task-menu">
       <div
         style={styles.menuItem}
         onClick={(): void => {
           setIsModalOpen(true) // Ditambahkan
         }}
+        data-testid="edit-button"
       >
         <span className="material-icons">edit</span>
         Edit
@@ -39,6 +40,7 @@ const TaskMenu = ({ setIsMenuOpen, taskX }: TaskMenuProps): JSX.Element => {
         onClick={(): void => {
           deleteTasks()
         }}
+        data-testid="delete-button"
       >
         <span className="material-icons">delete</span>Delete
       </div>
