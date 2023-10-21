@@ -69,7 +69,7 @@ const TaskForm = ({
 
   return (
     <form style={styles.form}>
-      <div style={styles.formItem} data-testid="title-input">
+      <div style={styles.formItem}>
         <label>Title：</label>
         <input
           type="text"
@@ -83,9 +83,10 @@ const TaskForm = ({
             }
           }}
           style={styles.formInput}
+          data-testid="title-input"
         />
       </div>
-      <div style={styles.formItem} data-testid="detail-input">
+      <div style={styles.formItem}>
         <label>Detail：</label>
         <textarea
           value={detail}
@@ -98,9 +99,10 @@ const TaskForm = ({
             }
           }}
           style={styles.formTextArea}
+          data-testid="detail-input"
         />
       </div>
-      <div style={styles.formItem} data-testid="due-date-input">
+      <div style={styles.formItem}>
         <label>Due Date：</label>
         <input
           type="date"
@@ -114,9 +116,10 @@ const TaskForm = ({
             }
           }}
           style={styles.formInput}
+          data-testid="due-date-input"
         />
       </div>
-      <div style={styles.formItem} data-testid="progress-select">
+      <div style={styles.formItem}>
         <label>Progress：</label>
         <select
           style={styles.formInput}
@@ -129,6 +132,7 @@ const TaskForm = ({
               setProgressOrder(Number(e.target.value))
             }
           }}
+          data-testid="progress-select"
         >
           <option
             value={TASK_PROGRESS_ID.NOT_STARTED}
