@@ -1,29 +1,12 @@
-import React, { useState } from 'react' // useState ditambahkan
+import React, { useState } from 'react'
 import type { Task, CSSProperties } from '../../../../types'
 import { TASK_PROGRESS_STATUS, TASK_PROGRESS_ID } from '../../../../constants/app'
-// import { useRecoilState } from 'recoil' // Ditambahkan
-// import { tasksState } from '../../TaskAtoms' // Ditambahkan
-import { useTasksAction } from '../../hooks/Tasks' // Ditambahkan
-import TaskMenu from '../shared/TaskMenu' // Ditambahkan
+import { useTasksAction } from '../../hooks/Tasks'
+import TaskMenu from '../shared/TaskMenu'
 
 interface TaskListItemProps {
   task: Task
 }
-
-// const getProgressCategory = (progressOrder: number): string => {
-//   switch (progressOrder) {
-//     case 1: // Raw number
-//       return 'Not Started' // Raw string
-//     case 2:
-//       return 'In Progress'
-//     case 3:
-//       return 'Waiting/In Review'
-//     case 4:
-//       return 'Completed'
-//     default:
-//       return 'Not Started'
-//   }
-// }
 
 const getIconStyle = (progressOrder: number): React.CSSProperties => {
   const color: '#55C89F' | '#C5C5C5' =
@@ -99,7 +82,9 @@ const TaskListItem = ({ task }: TaskListItemProps): JSX.Element => {
           more_horiz
         </span>
       </div>
-      {isMenuOpen && <TaskMenu setIsMenuOpen={setIsMenuOpen} taskX={task.id} />}
+      {isMenuOpen && (
+        <TaskMenu setIsMenuOpen={setIsMenuOpen} taskX={task.id} progressCat={task.progressOrder} />
+      )}
     </div>
   )
 }
